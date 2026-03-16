@@ -27,7 +27,7 @@ def ssim(image1, image2, window_size=11):
         img2 = cv2.cvtColor(img2.astype(np.uint8), cv2.COLOR_BGR2GRAY).astype(np.float64)
     
     if img1.shape != img2.shape:
-        raise ValueError("Input images must have the same dimensions.")
+        img2 = cv2.resize(img2, (img1.shape[1], img1.shape[0]))
     
     # Паддинг изображений
     pad = window_size // 2

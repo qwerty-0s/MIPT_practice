@@ -68,7 +68,7 @@ def calculate_tfidf(texts):
     return matrix_tfidf
 
 
-df = pd.read_csv("/home/au/python/Mipt_project/archive/spam.csv", encoding="latin-1")
+"""df = pd.read_csv("/home/au/python/Mipt_project/archive/spam.csv", encoding="latin-1")
 print(df.columns)
 print(df.iloc[0])
 
@@ -82,4 +82,4 @@ model = GaussianNB()
 model.fit(X_train, y_train)
 
 predictions = model.predict(X_test)
-print(classification_report(y_test, predictions))
+print(classification_report(y_test, predictions))"""
