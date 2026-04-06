@@ -7,7 +7,6 @@ import warnings
 warnings.filterwarnings("ignore")
 
 
-# ── Загружаем модель один раз при импорте модуля ──────────────────────────────
 MODEL_NAME = "sentence-transformers/all-MiniLM-L6-v2"
 
 print("Загрузка модели sentence-transformer...")
@@ -17,7 +16,7 @@ model.eval()  # Режим inference
 print("Модель загружена")
 
 
-#Mean Pooling (стандартный способ получить sentence embedding)
+#Mean Pooling для получения вектора предложения из токенов
 def _mean_pooling(model_output: torch.Tensor, attention_mask: torch.Tensor) -> torch.Tensor:
     token_embeddings = model_output.last_hidden_state          # (B, T, H)
     mask_expanded = attention_mask.unsqueeze(-1).float()       # (B, T, 1)
@@ -97,7 +96,7 @@ def save_embeddings(
     output_path: str = "text_embeddings.npz",
 ) -> None:
     """Сохраняет эмбеддинги в файл .npz"""
-    # Ключи npz не могут содержать спецсимволы → кодируем индексом
+
     keys = list(embeddings.keys())
     vecs = np.stack([embeddings[k] for k in keys])          # (N, 384)
 
