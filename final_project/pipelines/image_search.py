@@ -3,17 +3,9 @@ import cv2
 import pandas as pd
 import os
 
-from TFIDF import text_process, calculate_tfidf
-from MSE import ssim
-
-def cosine_similarity(v1, v2):
-    """Вычисляет косинусное сходство между двумя векторами."""
-    dot_product = np.dot(v1, v2)
-    norm_v1 = np.linalg.norm(v1)
-    norm_v2 = np.linalg.norm(v2)
-    if norm_v1 == 0 or norm_v2 == 0:
-        return 0
-    return dot_product / (norm_v1 * norm_v2)
+from metrics.ssim_mse import ssim, mse
+from metrics.cosine_similarity import cosine_similarity
+from features.tfidf import text_process, calculate_tfidf
 
 def find_unique_images(query, df, image_folder, ssim_threshold=0.85, top_k=5):
     """
